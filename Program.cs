@@ -1,6 +1,7 @@
 ﻿using U_Harchi;
 
 U_Market market = new();
+ConsoleKey type = ConsoleKey.D4;
 Console.WriteLine("Добро пожаловать в наш интернет-магазин продуктов!\n" +
     "Хотите выбрать категорию товаров?");
 string? ans1 = Console.ReadLine();
@@ -18,6 +19,7 @@ if (ans1 == "Да")
         Console.WriteLine("\nОтвет некорректный - выберите цифру (1,2,3)...");
         key = Console.ReadKey().Key;
     }
+    type = key;
     if (key == ConsoleKey.D1)
     {
         //market.CartTyping(out Cart<ISnacks> FoodCart);
@@ -102,6 +104,7 @@ if (ans1 == "Да")
 }
 else
 {
+    Cart<IFood> FoodCart = new();
     Console.WriteLine($"\nВыберете товар:\n1. {market.Things[0].Name}\n2. {market.Things[1].Name}\n3. {market.Things[2].Name}\n" +
         $"4. {market.Things[3].Name}\n5. {market.Things[4].Name}\n6. {market.Things[5].Name}\n" +
         $"7. {market.Things[6].Name}\n8. {market.Things[7].Name}\n9. {market.Things[8].Name}\nQ. Стоп\n");
@@ -111,7 +114,7 @@ else
         switch (keys)
         {
             case ConsoleKey.D1:
-                market.FoodCart.Foodstuffs.Add((IFood)market.Things[0]);
+                FoodCart.Foodstuffs.Add((IFood)market.Things[0]);
                 keys = Console.ReadKey().Key;
                 continue;
             case ConsoleKey.D2:
@@ -164,7 +167,7 @@ if (!market.FoodCart.IsBalansing())
     }
     if (ans2 == "Да")
     {
-        market.FoodCart.CartBalansing(market);
+        market.FoodCart.CartBalansing(market, type);
         Console.WriteLine("Балансировка...");
     }
 }

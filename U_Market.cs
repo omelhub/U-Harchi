@@ -12,7 +12,7 @@ public class U_Market
         new Chicken(), new OliveOil(), new Fruit(), new DumplingsMeat(), new Cheburek(), new DumplingsBerries(),
         new Pen(), new Notebook()};
 
-    public Cart<IFood> FoodCart { get; set; } = new Cart<IFood>();
+    public Cart<IFood> FoodCart { get; set; } = new();
 
     //public void CartTyping<T>(out Cart<T> FoodCart) where T : IFood
     //{
